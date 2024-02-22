@@ -39,7 +39,7 @@ const url = "https://webmmi.iut-tlse3.fr/~pecatte/frigo/public/8/produits";
       </ul>
       
       <br> <br>
-      <img src= "src\assets\FrigoNourritures.jpg" >
+      <img src= './FrigoNourritures.jpg' alt="frigo" >
 
 
 
