@@ -10,6 +10,7 @@ defineEmits(["deletec","ajouterc","enleverc"])
     <button @click="() => deletec(aliment.id)">Supprimer</button>
     <button @click="() => ajouterc(aliment)">Ajouter</button>
     <button @click="() => enleverc(aliment)">Enlever</button>
+    <button @click="() => rechercher(aliment)">Rechercher</button>
   </li>
 </template>
 

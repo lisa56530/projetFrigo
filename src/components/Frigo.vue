@@ -2,6 +2,7 @@
 
 import Produits from "./Produits.vue";
 import FrigoOuvert from "./FrigoOuvert.vue";
+import FrigoRecherche from  "./FrigoRecherche.vue";
 
 const listeC = reactive([]);
 
@@ -199,9 +200,21 @@ onMounted(() => {
 
 <template>
   <h3>Frigo</h3>
+  <ul>
+    <Produits v-for="aliment of listeC" :key="aliment.id" :aliment="aliment.nom"
+    @enleverc="handlerDelete" @ajouterc="handlerPlus" />
+  </ul>
   <div>
-  <FrigoForm @addAliment="handlerAdd"></FrigoForm>
-  <ul>  
+    <FrigoOuvert @addc="handlerAdd"></FrigoOuvert>
+  <ul> 
+    <ul>
+      <FrigoRecherche @recherche="handlerRecherche"></FrigoRecherche>
+    </ul>
+    <ul>
+      <Produits v-for="aliment of rechercheAliment" :key="aliment.id" :aliment="aliment.mot"
+      @enleverc= "handlerDelete" @ajouterc="handlerPlus"/>
+    </ul>
+    
     <Produits
       v-for="(aliment) of listeC"
       :key="chose.id"
@@ -209,6 +222,7 @@ onMounted(() => {
       :ajouterc ="handlerMoins"
       :deletec="handlerDelete"
       :enleverc="handlerPlus"
+      :rechercher="handlerRecherche" 
     />
 
     <!-- afficher la liste sans le composant "Produits"

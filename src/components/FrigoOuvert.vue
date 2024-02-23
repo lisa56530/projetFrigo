@@ -2,6 +2,7 @@
 import { ref } from "vue";
 const nom = ref("");
 const qte = ref("");
+const photo = ref(""); 
 const emit = defineEmits(["addc"]);
 function handlerSubmit() {
   emit("addc", libelle.value);
@@ -44,42 +45,27 @@ const url = "https://webmmi.iut-tlse3.fr/~pecatte/frigo/public/8/produits";
 
 
       <br> <br>
-    <label for="produits">Qu'est-ce qu'on a acheté  </label>
-    <select id="produit" name ="produit">
-        <option value="tomate" selected= "selected">Tomate</option>
-        <option value="lait" selected= "selected">Lait</option>
-        <option value="letue" selected= "selected">Letue</option>
-        <option value="mousseChocolat" selected= "selected">Mousse au Chocolat</option>
-        <option value="champagne" selected= "selected">Champagne</option>
-</select>
-
-<label for="qte"></label>
-  <select> <option value="1" selected= "selected">1</option>
-        <option value="2" selected= "selected">2</option>
-        <option value="3" selected= "selected">3</option>
-        <option value="4" selected= "selected">4</option>
-        <option value="5" selected= "selected">5</option>
-    </select>
-
+    <body> 
+      <h2>Qu'est-ce qu'on a acheté ? </h2>
+      <form @submit.prevent= "$emit('addc', nom, qte, photo)"> 
+        <input type="text" v-model="nom" />
+        <input type="text" v-model="qte" />
+       
+       <input type="submit" value="Valider" />
+      </form>
+    </body>
 
 <br> <br>
-<label for="produits"> Qu'est-ce qu'on a mangé  </label>
-<select> <option value="tomate" selected= "selected">Tomate</option>
-        <option value="lait" selected= "selected">Lait</option>
-        <option value="letue" selected= "selected">Letue</option>
-        <option value="mousseChocolat" selected= "selected">Mousse au Chocolat</option>
-        <option value="champagne" selected= "selected">Champagne</option>
-      </select>
 
-
-  <label for="qte"></label>
-  <select> <option value="1" selected= "selected">1</option>
-        <option value="2" selected= "selected">2</option>
-        <option value="3" selected= "selected">3</option>
-        <option value="4" selected= "selected">4</option>
-        <option value="5" selected= "selected">5</option></select>
-
-
+<body> 
+      <h2>Qu'est-ce qu'on a mangé ? </h2>
+      <form @submit.prevent= "$emit('enleverc', nom, qte, photo)"> 
+        <input type="text" v-model="nom" />
+        <input type="text" v-model="qte" />
+       
+       <input type="submit" value="Valider" />
+      </form>
+    </body>
 
 <br> <br>
 <table border ="1">
