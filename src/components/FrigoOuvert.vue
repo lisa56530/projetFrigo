@@ -56,7 +56,7 @@ const url = "https://webmmi.iut-tlse3.fr/~pecatte/frigo/public/8/produits";
 
 <body> 
       <h2>Qu'est-ce qu'on a mangé ?</h2> 
-      <form @submit.prevent= "$emit('enleverc', nom, qte, photo)"> <br><br><br>  
+      <form @submit.prevent= "$emit('enleverc', nom, qte, photo)"> <br><br><br>  <!--il ne reconnait pas enlervec pourtant je l'ai délcaré-->
         <input type="text" v-model="nom" placeholder="Quoi ?"/> <br>
         <input type="text" v-model="qte" placeholder="Combien ?"/> <br>
         <input type="text" v-model="photo" placeholder="A quoi ça ressemble ?" /> <br>
