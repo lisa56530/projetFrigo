@@ -43,31 +43,27 @@ const url = "https://webmmi.iut-tlse3.fr/~pecatte/frigo/public/8/produits";
       <img src= './FrigoNourritures.jpg' alt="frigo" >
 
 
-
-      <br> <br>
     <body> 
       <h2>Qu'est-ce qu'on a acheté ? </h2>
-      <form @submit.prevent= "$emit('addc', nom, qte, photo)"> 
-        <input type="text" v-model="nom" />
-        <input type="text" v-model="qte" />
-       
+      <form @submit.prevent= "$emit('addc', nom, qte, photo)"> <br><br><br>  
+        <input type="text" v-model="nom" placeholder="Quoi ?" /><br>
+        <input type="text" v-model="qte" placeholder="Combien ?" /><br>
+        <input type="text" v-model="photo" placeholder="A quoi ça ressemble ?"  /> <br>
        <input type="submit" value="Valider" />
       </form>
     </body>
 
-<br> <br>
 
 <body> 
-      <h2>Qu'est-ce qu'on a mangé ? </h2>
-      <form @submit.prevent= "$emit('enleverc', nom, qte, photo)"> 
-        <input type="text" v-model="nom" />
-        <input type="text" v-model="qte" />
-       
+      <h2>Qu'est-ce qu'on a mangé ?</h2> 
+      <form @submit.prevent= "$emit('enleverc', nom, qte, photo)"> <br><br><br>  
+        <input type="text" v-model="nom" placeholder="Quoi ?"/> <br>
+        <input type="text" v-model="qte" placeholder="Combien ?"/> <br>
+        <input type="text" v-model="photo" placeholder="A quoi ça ressemble ?" /> <br>
        <input type="submit" value="Valider" />
       </form>
     </body>
 
-<br> <br>
 <table border ="1">
     <caption>Résultat des courses : </caption>
     <thead>
