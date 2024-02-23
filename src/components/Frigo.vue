@@ -201,7 +201,7 @@ onMounted(() => {
 <template>
   <h3>Frigo</h3>
   <ul>
-    <Produits v-for="aliment of listeC" :key="aliment.id" :aliment="aliment.nom"
+    <Produits v-for="aliment of listeC" :key="aliment.id" :aliment="aliment"
     @enleverc="handlerDelete" @ajouterc="handlerPlus" />
   </ul>
   <div>
@@ -211,13 +211,13 @@ onMounted(() => {
       <FrigoRecherche @recherche="handlerRecherche"></FrigoRecherche>
     </ul>
     <ul>
-      <Produits v-for="aliment of rechercheAliment" :key="aliment.id" :aliment="aliment.mot"
+      <Produits v-for="aliment of rechercheAliment" :key="aliment.id" :aliment="aliment"
       @enleverc= "handlerDelete" @ajouterc="handlerPlus"/>
     </ul>
     
     <Produits
       v-for="(aliment) of listeC"
-      :key="chose.id"
+      :key="aliment.id"
       :aliment="aliment"
       :ajouterc ="handlerMoins"
       :deletec="handlerDelete"
