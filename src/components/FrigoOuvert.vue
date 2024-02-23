@@ -65,7 +65,7 @@ const url = "https://webmmi.iut-tlse3.fr/~pecatte/frigo/public/8/produits";
     </body>
 
 <table border ="1">
-    <caption>Résultat des courses : </caption>
+    <caption>Résultat des courses : </caption> <!--il faut lier ce tableau avec les ofnctions. J'ai tenté pleins de trucs et ça marchait pas, ça m'a gavé. Au pire tant pispour ce tableau.-->
     <thead>
         <tr>
             <th>Produit</th>
