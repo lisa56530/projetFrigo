@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 899855273b6cd44f094b5cc63fc4716f4b00a451
 <script setup>
 import { ref } from "vue";
 // -- donnée réactive pour la saisie du libellé
@@ -33,4 +37,8 @@ const emit = defineEmits(["addc","enleverc"]);
   <input type="number" min="1" v-model="qteE" required/> <br>
  <input type="submit" value="Valider" />
 </form>
+<<<<<<< HEAD
 </template>
+=======
+</template>
+>>>>>>> 899855273b6cd44f094b5cc63fc4716f4b00a451
