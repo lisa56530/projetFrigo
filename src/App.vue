@@ -1,9 +1,9 @@
 <script setup>
-import FrigoOuvert from './components/FrigoOuvert.vue';
+import Frigo from './components/Frigo.vue';
 </script>
 
 <template>
-  <FrigoOuvert></FrigoOuvert>
+  <Frigo></Frigo>
 </template>
 
 <style scoped>

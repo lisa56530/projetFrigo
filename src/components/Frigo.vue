@@ -1,8 +1,9 @@
 <script setup>
-
-import Produits from "./Produits.vue";
+import { reactive, onMounted } from "vue";
+import FrigoForm from "./FrigoForm.vue";
 import FrigoOuvert from "./FrigoOuvert.vue";
-import FrigoRecherche from  "./FrigoRecherche.vue";
+import Resultat from  "./Resultat.vue";
+import Aliment from '../Aliment';
 
 const listeC = reactive([]);
 
@@ -31,14 +32,12 @@ function handlerDelete(id) {
 
 
 
-
-      function handlerAdd(nom, qte) {
+      function handlerAdd(nom, qte,photo) {
   // -- il faut créer un nouvel aliment instance de la classe
 
 
   console.log(nom, qte);
  
-  let photo = "https://webmmi.iut-tlse3.fr//~pecatte//frigo//public//images// "+nom;
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -60,7 +59,7 @@ function handlerDelete(id) {
 }
 
 
-
+/*
 
 function handlerPlus(aliment) {
   console.log(aliment);
@@ -91,34 +90,32 @@ function handlerPlus(aliment) {
   })
     .catch((error) => console.log(error));
 }
+*/
+
+function handlerMoins(nom,qte) {
+let aliment;
+console.log(nom,qte);
+for(var ali of listeC){
+  if(ali.nom==nom){
+    aliment=ali;
+    aliment.qte=aliment.qte-qte
+  }
+}
 
 
-function handlerMoins(aliment) {
-  console.log(aliment);
-  let id = aliment.id;
-  let nom = aliment.nom;
-  let photo = aliment.photo;
-
-
-  if(aliment.qte>0){aliment.qte=aliment.qte-1;}
- 
-  let qte = aliment.qte;
-
-
-
+if(qte<=0){handlerDelete(aliment.id)}
 
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
-
-  if(qte==0){handlerDelete(id)}
+console.log(aliment)
  
   const fetchOptions = {
     method: "PUT",
     headers : myHeaders,
-    body: JSON.stringify({id: id, nom: nom, qte: qte, photo:  photo}),
+    body: JSON.stringify({id: aliment.id, nom: aliment.nom, qte: aliment.qte, photo: aliment.photo}),
   };
-
+  console.log(fetchOptions);
 
   fetch(url , fetchOptions)
     .then((response) => {
@@ -130,7 +127,7 @@ function handlerMoins(aliment) {
     .catch((error) => console.log(error));
 }
 
-
+/*
 function handlerRecherche(mot){
     const urlPers = "https://webmmi.iut-tlse3.fr/~pecatte/frigo/public/14/produits?search=";
     let fetchOptions = { method: "GET" };
@@ -146,9 +143,9 @@ function handlerRecherche(mot){
         document.getElementById("rechercheAliment").innerHTML = ""
      
         document.getElementById("rechercheAliment").innerHTML += "<ul>";
-      /* on insère de l'html pour créer une liste de livre correspondant au critère*/
+      // on insère de l'html pour créer une liste de livre correspondant au critère
       for (let l of aliments) {
-        /* pour chaque livres, on récupère ses attributs et on l'incère dans l'html */
+        // pour chaque livres, on récupère ses attributs et on l'incère dans l'html 
         document.getElementById("rechercheAliment").innerHTML +=
           "<li>" +
 
@@ -156,7 +153,7 @@ function handlerRecherche(mot){
           l.nom+
           "</li>";
       }
-      /* on oublie pas de fermer la liste */
+      // on oublie pas de fermer la liste 
       document.getElementById("rechercheAliment").innerHTML += "</ul>";
     })
     .catch((error) => {
@@ -165,7 +162,7 @@ function handlerRecherche(mot){
    });
   }
 
-
+*/
 
 
 function getTodos() {
@@ -199,40 +196,42 @@ onMounted(() => {
 
 
 <template>
-  <h3>Frigo</h3>
-  <ul>
-    <Produits v-for="aliment of listeC" :key="aliment.id" :aliment="aliment"
-    @enleverc="handlerDelete" @ajouterc="handlerPlus" />
-  </ul>
-  <div>
-    <FrigoOuvert @addc="handlerAdd"></FrigoOuvert>
-  <ul> 
-    <ul>
-      <FrigoRecherche @recherche="handlerRecherche"></FrigoRecherche>
-    </ul>
-    <ul>
-      <Produits v-for="aliment of rechercheAliment" :key="aliment.id" :aliment="aliment"
-      @enleverc= "handlerDelete" @ajouterc="handlerPlus"/>
-    </ul>
-    
-    <Produits
-      v-for="(aliment) of listeC"
-      :key="aliment.id"
-      :aliment="aliment"
-      :ajouterc ="handlerMoins"
-      :deletec="handlerDelete"
-      :enleverc="handlerPlus"
-      :rechercher="handlerRecherche" 
-    />
+  
+  <br>
+    <h1> Mon frigo </h1>
+    <h3>Dans mon frigo il y a pour l'instant des/du/de la : </h3>
 
-    <!-- afficher la liste sans le composant "Produits"
-    <li v-for="(chose, index) of listeC" :key="chose.id">
-      {{ chose.pourAfficher() }}
-      <button @click="handlerDelete(index)">Supprimer</button>
-      <button @click="handlerFaire(index)">Faire</button>
-    </li>
-    -->
-  </ul>
+  <div>
+    <ul>
+    <FrigoOuvert v-for="aliment in listeC"
+      :key=[aliment.id]
+      :aliment="aliment"
+      ></FrigoOuvert>
+    </ul>
+    <br> <br>
+      <img src= './FrigoNourritures.jpg' alt="frigo" >
+      <br> <br>
+    <FrigoForm
+    :liste="listeC"
+    @addc="handlerAdd"
+    @enleverc="handlerMoins"
+    ></FrigoForm>
+    <br><br>
+    <table border ="1">
+    <caption>Résultat des courses : </caption> <!--il faut lier ce tableau avec les ofnctions. J'ai tenté pleins de trucs et ça marchait pas, ça m'a gavé. Au pire tant pispour ce tableau.-->
+    <thead>
+        <tr>
+            <th>Produit</th>
+            <th>Quantité</th>
+        </tr>
+    </thead>
+    <tbody>
+      <Resultat v-for="aliment in listeC"
+      :key=[aliment.id]
+      :aliment="aliment"
+      ></Resultat>
+    </tbody>
+    </table>
+
 </div>
 </template>
-</style>
