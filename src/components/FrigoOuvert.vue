@@ -3,10 +3,14 @@ import { ref } from "vue";
 const nom = ref("");
 const qte = ref("");
 const photo = ref(""); 
-const emit = defineEmits(["addc"]);
+const emit = defineEmits(["addc", "eleverc"]);
 function handlerSubmit() {
-  emit("addc", libelle.value);
-  libelle.value = "";
+  emit("addc", aliment.value);
+  aliment.value = "";
+}
+function handlerDelete() {
+  emit("enleverc", aliment.value);
+  aliment.value = "";
 }
 
 const url = "https://webmmi.iut-tlse3.fr/~pecatte/frigo/public/8/produits"; 
@@ -21,6 +25,7 @@ const url = "https://webmmi.iut-tlse3.fr/~pecatte/frigo/public/8/produits";
     <br>
     <h1> Mon frigo </h1>
     <form @submit.prevent="handlerSubmit">
+
       <!-- la direective v-model permet de faire le lien bidirectionnel
            entre la variable et la zone de saisie ;
            si on modifie la var, la zone de saisie est modifié
@@ -55,8 +60,9 @@ const url = "https://webmmi.iut-tlse3.fr/~pecatte/frigo/public/8/produits";
 
 
 <body> 
+  
       <h2>Qu'est-ce qu'on a mangé ?</h2> 
-      <form @submit.prevent= "$emit('enleverc', nom, qte, photo)"> <br><br><br>  
+      <form @submit.prevent= "$emit('enleverc', nom, qte, photo)"> <br><br><br>  <!--il reconnait pas enlervec-->
         <input type="text" v-model="nom" placeholder="Quoi ?"/> <br>
         <input type="text" v-model="qte" placeholder="Combien ?"/> <br>
         <input type="text" v-model="photo" placeholder="A quoi ça ressemble ?" /> <br>
