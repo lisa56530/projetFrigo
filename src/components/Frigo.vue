@@ -3,11 +3,8 @@ import { reactive, onMounted } from "vue";
 import FrigoForm from "./FrigoForm.vue";
 import FrigoOuvert from "./FrigoOuvert.vue";
 import Resultat from  "./Resultat.vue";
-<<<<<<< HEAD
 import Aliment from "../../Aliment";
-=======
-import Aliment from '../Aliment';
->>>>>>> 899855273b6cd44f094b5cc63fc4716f4b00a451
+
 
 const listeC = reactive([]);
 
@@ -236,18 +233,13 @@ onMounted(() => {
       ></Resultat>
     </tbody>
     </table>
-<<<<<<< HEAD
 
     <br><br>
     <h3>Découvre le secret de la mousse au cholocat de Stitch -></h3>
     <p><a href="https://www.marmiton.org/recettes/recette_mousse-au-chocolat-facile_13585.aspx"><img src="./Chocolat.png" alt="Mousse au chocolat"></a></p>
 
 
+    </div>
+    </template>
 
-</div>
-</template>
-=======
 
-</div>
-</template>
->>>>>>> 899855273b6cd44f094b5cc63fc4716f4b00a451
