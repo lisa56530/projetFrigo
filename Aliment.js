@@ -1,10 +1,10 @@
 
 export default class  Aliment {
-  constructor(nom, photo, qte, id) {
-    this._nom = ["tomate", "lait", "letue", "mousse", "champ"]
+  constructor(id, nom, qte, photo) {
+    this._nom = nom;
     this._qte =qte; 
-    this._photo=photo.nom ; 
-    this._id = Date.now() + Math.floor(Math.random() * 10); // génération d'un id unique
+    this._photo=photo; 
+    this._id = id; // génération d'un id unique
   }
 
 
@@ -17,7 +17,7 @@ export default class  Aliment {
   }
 
 
-  get photo (){
+  get photo(){
     return this._photo; 
   }
 
